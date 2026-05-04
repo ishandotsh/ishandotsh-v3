@@ -3,22 +3,21 @@ layout: base.njk
 ---
 <article class="article-shell {% if contentType == 'experiment' %}experiment-article{% endif %}">
   <header class="article-header">
-    <div class="article-kicker">
+    <h1>{{ title }}</h1>
+    {% if excerpt %}<p class="article-excerpt">{{ excerpt }}</p>{% endif %}
+    {% set visibleTags = tags | publicTags %}
+    <div class="article-meta-line">
       <time datetime="{{ date | dateIso }}">{{ date | dateDisplay }}</time>
       <span aria-hidden="true">·</span>
       <span>{{ content | readingTime }}</span>
+      {% if visibleTags.length %}
+        <span aria-hidden="true">·</span>
+        <span class="article-bracket-tags" aria-label="Tags">[ {% for tag in visibleTags %}<a href="/tags/{{ tag | slug }}/">{{ tag }}</a>{% if not loop.last %} {% endif %}{% endfor %} ]</span>
+      {% endif %}
       {% if draft %}<span aria-hidden="true">·</span><span class="draft-badge">Draft</span>{% endif %}
     </div>
-    <h1>{{ title }}</h1>
-    {% if excerpt %}<p class="article-excerpt">{{ excerpt }}</p>{% endif %}
     {% if coverImage %}<img class="cover-image" src="{{ coverImage }}" alt="">{% endif %}
     {% if series %}<div class="series-label">Series: {{ series }}</div>{% endif %}
-    {% set visibleTags = tags | publicTags %}
-    {% if visibleTags.length %}
-      <div class="home-feed-tags article-tags" aria-label="Tags">
-        {% for tag in visibleTags %}<a class="home-inline-tag" href="/tags/{{ tag | slug }}/">{{ tag }}</a>{% endfor %}
-      </div>
-    {% endif %}
   </header>
 
   <div class="prose">

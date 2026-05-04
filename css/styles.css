@@ -326,8 +326,7 @@ a:hover { color: var(--accent-2); text-decoration-color: var(--accent-2); }
 .experiment-card { background: linear-gradient(180deg, rgba(242,177,121,.08), rgba(255,255,255,.012)); }
 .compact-grid .content-card { padding: 1rem; }
 
-.card-meta,
-.article-kicker {
+.card-meta {
   display: flex;
   align-items: center;
   gap: .55rem;
@@ -491,13 +490,34 @@ a:hover { color: var(--accent-2); text-decoration-color: var(--accent-2); }
 .prose ul,
 .prose ol,
 .prose blockquote { margin: 1rem 0; }
-.article-kicker {
-  text-transform: none;
-  letter-spacing: 0;
+.article-excerpt { margin: .45rem 0 0; }
+.article-meta-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .2rem .45rem;
+  margin-top: .65rem;
+  color: var(--muted-2);
+  font-family: Inter, system-ui, sans-serif;
   font-size: .86rem;
   font-weight: 650;
+  line-height: 1.5;
 }
-.article-tags { margin-top: 1rem; }
+.article-bracket-tags {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: .28rem;
+  color: var(--muted);
+}
+.article-bracket-tags a {
+  color: var(--accent-2);
+  text-decoration: none;
+}
+.article-bracket-tags a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
 .tag-page-header p a,
 .tags-page .page-header p a { color: var(--accent); }
 .tags-index-cloud { margin-bottom: 0; }
