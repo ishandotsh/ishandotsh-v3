@@ -3,18 +3,18 @@ layout: base.njk
 title: Tags
 permalink: /tags/
 ---
-<header class="page-header">
-  <h1>Tags</h1>
-  <p>Browse posts and experiments by topic.</p>
-</header>
-<div class="tag-cloud">
-  {% for tag in collections.allTags %}
-    {% set items = collections.allContent | filterByTag(tag) %}
-    <a class="tag-cloud-item" href="/tags/{{ tag | slug }}/">
-      <span>{{ tag }}</span>
-      <em>{{ items.length }}</em>
-    </a>
-  {% else %}
-    <p>No tags yet.</p>
-  {% endfor %}
-</div>
+<section class="home-feed tags-page">
+  <header class="page-header archive-header">
+    <h1>Tags</h1>
+    <p>Browse posts and experiments by topic.</p>
+  </header>
+  <div class="home-tag-cloud tags-index-cloud" aria-label="Tags">
+    <a class="home-tag-chip home-tag-all" href="/">all</a>
+    {% for tag in collections.allTags %}
+      {% set items = collections.allContent | filterByTag(tag) %}
+      <a class="home-tag-chip" href="/tags/{{ tag | slug }}/">{{ tag }} <span>{{ items.length }}</span></a>
+    {% else %}
+      <p class="muted">No tags yet.</p>
+    {% endfor %}
+  </div>
+</section>

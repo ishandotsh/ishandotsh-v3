@@ -3,14 +3,16 @@ layout: base.njk
 title: Search
 permalink: /search/
 ---
-<header class="page-header">
-  <h1>Search</h1>
-</header>
-<section class="search-panel">
-  <form id="search-form" role="search">
-    <label class="search-label sr-only" for="search-input">Search the site</label>
-    <input id="search-input" class="search-input" type="search" name="q" placeholder="Try “ai”, “benchmark”, or a post title…" autocomplete="off">
-  </form>
-  <div id="search-results" class="search-results" aria-live="polite"></div>
+<section class="home-feed search-page">
+  <header class="page-header archive-header">
+    <h1>Search</h1>
+  </header>
+  <section class="search-panel">
+    <form id="search-form" role="search">
+      <label class="search-label sr-only" for="search-input">Search the site</label>
+      <input id="search-input" class="search-input" type="search" name="q" placeholder="Try “pi”, “robotics”, or a post title…" autocomplete="off">
+    </form>
+    <div id="search-results" class="search-results" aria-live="polite"></div>
+  </section>
 </section>
 <script type="module" src="/js/search.js"></script>

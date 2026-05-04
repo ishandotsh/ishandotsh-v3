@@ -1,0 +1,17 @@
+<article class="home-feed-item {% if item.data.contentType == 'experiment' %}home-feed-experiment{% endif %}">
+  <h3><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
+  {% if item.data.excerpt %}<p>{{ item.data.excerpt }}</p>{% endif %}
+  <div class="home-feed-meta">
+    <time datetime="{{ item.data.date | dateIso }}">{{ item.data.date | dateDisplay }}</time>
+    <span aria-hidden="true">·</span>
+    <span>{{ item.templateContent | readingTime }}</span>
+    {% set visibleTags = item.data.tags | publicTags %}
+    {% if visibleTags.length %}
+      <span class="home-feed-tags" aria-label="Tags">
+        {% for tag in visibleTags %}
+          <a class="home-inline-tag" href="/tags/{{ tag | slug }}/">{{ tag }}</a>
+        {% endfor %}
+      </span>
+    {% endif %}
+  </div>
+</article>

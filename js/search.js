@@ -48,14 +48,13 @@ import Fuse from "./fuse.min.mjs";
       return;
     }
     results.innerHTML = items.map(({ item }) => `
-      <article class="search-result">
-        <div class="card-meta">
-          <span>${item.type === "experiment" ? "⚡ Experiment" : "Post"}</span>
+      <article class="home-feed-item search-result-row ${item.type === "experiment" ? "home-feed-experiment" : ""}">
+        <h3><a href="${item.url}">${escapeHtml(item.title)}</a></h3>
+        ${item.excerpt ? `<p>${escapeHtml(item.excerpt)}</p>` : ""}
+        <div class="home-feed-meta">
           <time>${formatDate(item.date)}</time>
+          <span class="home-feed-tags">${(item.tags || []).map((tag) => `<a class="home-inline-tag" href="/tags/${tag.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}/">${escapeHtml(tag)}</a>`).join("")}</span>
         </div>
-        <h2><a href="${item.url}">${item.title}</a></h2>
-        ${item.excerpt ? `<p>${item.excerpt}</p>` : ""}
-        <div class="tag-list">${(item.tags || []).map((tag) => `<a class="tag" href="/tags/${tag.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}/">${tag}</a>`).join("")}</div>
       </article>
     `).join("");
   }

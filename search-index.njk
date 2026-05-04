@@ -10,7 +10,7 @@ eleventyExcludeFromCollections: true
     "type": {{ item.data.contentType | jsonify | safe }},
     "date": {{ (item.data.date | dateIso) | jsonify | safe }},
     "excerpt": {{ (item.data.excerpt or "") | jsonify | safe }},
-    "tags": {{ (item.data.tags or []) | jsonify | safe }},
+    "tags": {{ ((item.data.tags or []) | publicTags) | jsonify | safe }},
     "body": {{ (item.templateContent | stripHtml) | jsonify | safe }}
   }{% if not loop.last %},{% endif %}
 {%- endfor %}

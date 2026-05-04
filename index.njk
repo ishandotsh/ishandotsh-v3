@@ -2,28 +2,27 @@
 layout: base.njk
 title: Home
 ---
-{#
-<section class="hero">
-  <p class="eyebrow">Personal blog & experiments</p>
-  <h2>Writing, notes, and small technical investigations.</h2>
-  <p>{{ site.description }}</p>
-</section>
-#}
-
-<section class="feed-section">
-  <div class="section-heading">
-    <h2>Latest</h2>
-    <a class="rss-link" href="/feed.xml" aria-label="RSS feed" title="RSS feed">
-      <svg class="rss-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
-        <path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1-4.36 0 2.18 2.18 0 0 1 4.36 0ZM2 8.44v3.14c5.76 0 10.42 4.66 10.42 10.42h3.14C15.56 14.5 9.5 8.44 2 8.44Zm0-6.44v3.14c9.31 0 16.86 7.55 16.86 16.86H22C22 10.95 13.05 2 2 2Z"/>
-      </svg>
+<section class="home-feed">
+  <div class="home-tag-cloud" aria-label="Browse by tag">
+    <a class="home-tag-chip home-tag-all" href="/tags/">all</a>
+    {% for tag in collections.allTags %}
+      <a class="home-tag-chip" href="/tags/{{ tag | slug }}/">{{ tag }}</a>
+    {% endfor %}
+    <a class="home-tag-search" href="/search/" aria-label="Search">
+      <span aria-hidden="true">⌕</span> Search
     </a>
   </div>
-  <div class="card-grid mixed-feed">
+
+  <div class="home-feed-heading">
+    <h2>Writing</h2>
+    <a class="home-rss-link" href="/feed.xml" aria-label="RSS feed">RSS</a>
+  </div>
+
+  <div class="home-feed-list">
     {% for item in collections.allContent %}
-      {% include "card.njk" %}
+      {% include "feed-list-item.njk" %}
     {% else %}
-      <p>No posts or experiments yet.</p>
+      <p class="muted">No posts or experiments yet.</p>
     {% endfor %}
   </div>
 </section>

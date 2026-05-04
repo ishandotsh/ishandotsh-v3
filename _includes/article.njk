@@ -4,17 +4,19 @@ layout: base.njk
 <article class="article-shell {% if contentType == 'experiment' %}experiment-article{% endif %}">
   <header class="article-header">
     <div class="article-kicker">
-      {% if contentType == "experiment" %}<span class="type-badge">⚡ Experiment</span>{% else %}<span>Post</span>{% endif %}
       <time datetime="{{ date | dateIso }}">{{ date | dateDisplay }}</time>
-      {% if draft %}<span class="draft-badge">Draft</span>{% endif %}
+      <span aria-hidden="true">·</span>
+      <span>{{ content | readingTime }}</span>
+      {% if draft %}<span aria-hidden="true">·</span><span class="draft-badge">Draft</span>{% endif %}
     </div>
     <h1>{{ title }}</h1>
     {% if excerpt %}<p class="article-excerpt">{{ excerpt }}</p>{% endif %}
     {% if coverImage %}<img class="cover-image" src="{{ coverImage }}" alt="">{% endif %}
     {% if series %}<div class="series-label">Series: {{ series }}</div>{% endif %}
-    {% if tags %}
-      <div class="tag-list" aria-label="Tags">
-        {% for tag in tags %}<a class="tag" href="/tags/{{ tag | slug }}/">{{ tag }}</a>{% endfor %}
+    {% set visibleTags = tags | publicTags %}
+    {% if visibleTags.length %}
+      <div class="home-feed-tags article-tags" aria-label="Tags">
+        {% for tag in visibleTags %}<a class="home-inline-tag" href="/tags/{{ tag | slug }}/">{{ tag }}</a>{% endfor %}
       </div>
     {% endif %}
   </header>

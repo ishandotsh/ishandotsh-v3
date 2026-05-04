@@ -3,11 +3,9 @@ title: "Toy Image Search Engine"
 slug: "toy-image-search-engine"
 date: "2021-12-22"
 excerpt: "A quick and dirty project inspired by @TheAIEpiphany on Youtube, to teach myself the basics of the ResNet model, vector embeddings, and deploying a pytorch model."
-coverImage: "/assets/images/toy-image-search-engine/search_engine_hero.png"
 tags:
   - "Tutorial"
   - "PyTorch"
-  - "ML/AI"
 ---
 
 ## A search engine to find images containing the same object

@@ -3,13 +3,15 @@ layout: base.njk
 title: Posts
 permalink: /posts/
 ---
-<header class="page-header">
-  <h1>Posts</h1>
-</header>
-<div class="dense-index">
-  {% for item in collections.posts %}
-    {% include "dense-index-item.njk" %}
-  {% else %}
-    <p>No posts yet.</p>
-  {% endfor %}
-</div>
+<section class="home-feed archive-feed">
+  <header class="page-header archive-header">
+    <h1>Posts</h1>
+  </header>
+  <div class="home-feed-list">
+    {% for item in collections.posts %}
+      {% include "feed-list-item.njk" %}
+    {% else %}
+      <p class="muted">No posts yet.</p>
+    {% endfor %}
+  </div>
+</section>

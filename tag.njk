@@ -9,13 +9,17 @@ eleventyComputed:
   title: "Tagged {{ tag }}"
 ---
 {% set taggedItems = collections.allContent | filterByTag(tag) %}
-<header class="page-header">
-  <p class="eyebrow">{{ taggedItems.length }} item{% if taggedItems.length != 1 %}s{% endif %}</p>
-  <h1>Tagged “{{ tag }}”</h1>
-  <p><a href="/tags/">← All tags</a></p>
-</header>
-<div class="card-grid">
-  {% for item in taggedItems %}
-    {% include "card.njk" %}
-  {% endfor %}
-</div>
+<section class="home-feed archive-feed">
+  <header class="page-header archive-header tag-page-header">
+    <p class="eyebrow">{{ taggedItems.length }} item{% if taggedItems.length != 1 %}s{% endif %}</p>
+    <h1>{{ tag }}</h1>
+    <p><a href="/tags/">← All tags</a></p>
+  </header>
+  <div class="home-feed-list">
+    {% for item in taggedItems %}
+      {% include "feed-list-item.njk" %}
+    {% else %}
+      <p class="muted">No items for this tag.</p>
+    {% endfor %}
+  </div>
+</section>

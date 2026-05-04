@@ -21,6 +21,15 @@ function stripHtml(value = "") {
     .trim();
 }
 
+function readingTime(value = "") {
+  const words = stripHtml(value).split(/\s+/).filter(Boolean).length;
+  return `${Math.max(1, Math.ceil(words / 225))} min`;
+}
+
+function publicTags(tags = []) {
+  return tags || [];
+}
+
 function escapeAttribute(value = "") {
   return String(value)
     .replace(/&/g, "&amp;")
@@ -152,6 +161,8 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("slug", slugify);
   eleventyConfig.addFilter("stripHtml", stripHtml);
+  eleventyConfig.addFilter("readingTime", readingTime);
+  eleventyConfig.addFilter("publicTags", publicTags);
   eleventyConfig.addFilter("jsonify", (value) => JSON.stringify(value));
   eleventyConfig.addFilter("dateDisplay", (value) => {
     if (!value) return "";
@@ -251,7 +262,7 @@ module.exports = function (eleventyConfig) {
     const posts = collectionApi.getFilteredByGlob("posts/**/*.md");
     const experiments = collectionApi.getFilteredByGlob("experiments/**/*.md");
     [...posts, ...experiments].filter(isVisible).forEach((item) => {
-      (item.data.tags || []).forEach((tag) => tags.add(tag));
+      publicTags(item.data.tags || []).forEach((tag) => tags.add(tag));
     });
     return [...tags].sort((a, b) => a.localeCompare(b));
   });

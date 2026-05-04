@@ -2,37 +2,43 @@
 layout: base.njk
 title: About
 permalink: /about/
+templateEngineOverride: njk
 ---
 
-<header class="page-header">
-  <h1>About</h1>
-</header>
+<section class="home-feed about-page">
+  <header class="page-header archive-header">
+    <h1>About</h1>
+  </header>
 
-<section class="about-timeline" aria-label="Timeline">
-  <article class="timeline-item">
-    <div class="timeline-date">Now</div>
-    <div class="timeline-card">
-      <div class="card-meta"><span class="type-badge">Current</span><span>SJSU</span></div>
-      <h2>Masters student</h2>
-      <p>Currently a masters student at San José State University.</p>
-    </div>
-  </article>
+  you'll have to dig a little 
 
-  <article class="timeline-item">
-    <div class="timeline-date">Previously</div>
-    <div class="timeline-card">
-      <div class="card-meta"><span class="type-badge">Robotics</span><span>Addverb India</span></div>
-      <h2>Robotics engineer</h2>
-      <p>Worked as a robotics engineer at Addverb India.</p>
-    </div>
-  </article>
+  <div class="about-list" aria-label="Timeline">
+    <!-- <article class="about-item">
+      <div class="about-when">Now</div>
+      <div class="about-copy">
+        <div class="home-feed-meta"><span class="home-inline-tag">Current</span><span>SJSU</span></div>
+        <h2>Masters @ SJSU</h2>
+        <p>Currently a masters student at San José State University.</p>
+      </div>
+    </article>
 
-  <article class="timeline-item">
-    <div class="timeline-date">Before that</div>
-    <div class="timeline-card">
-      <div class="card-meta"><span class="type-badge">CS</span><span>Thapar Institute</span></div>
-      <h2>Comp Sci undergrad</h2>
-      <p>Completed a computer science undergraduate degree at Thapar Institute, India.</p>
-    </div>
-  </article>
+    <article class="about-item">
+      <div class="about-when">Previously</div>
+      <div class="about-copy">
+        <div class="home-feed-meta"><span class="home-inline-tag">Robotics</span><span>Addverb India</span></div>
+        <h2>Robotics engineer @ Addverb</h2>
+        <p>Worked as a robotics engineer at Addverb India.</p>
+      </div>
+    </article>
+
+    <article class="about-item">
+      <div class="about-when">2019</div>
+      <div class="about-copy">
+        <div class="home-feed-meta"><span class="home-inline-tag">CS</span><span>Thapar Institute</span></div>
+        <h2>computer science undergrad</h2>
+        <p>Completed a computer science undergraduate degree at Thapar Institute, India.</p>
+      </div>
+    </article>
+     -->
+  </div>
 </section>
