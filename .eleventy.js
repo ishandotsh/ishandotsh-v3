@@ -143,6 +143,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("js");
   eleventyConfig.addPassthroughCopy({ "node_modules/fuse.js/dist/fuse.min.mjs": "js/fuse.min.mjs" });
   eleventyConfig.addPassthroughCopy("assets");
+  eleventyConfig.addPassthroughCopy("favicon.ico");
+  eleventyConfig.addPassthroughCopy("favicon.svg");
   eleventyConfig.addPassthroughCopy({ "sessions/**/*.html": "sessions" });
   // Preserve old blog markdown image paths like ../assets/images/foo.png from /posts/:slug/.
   eleventyConfig.addPassthroughCopy({ "assets/images": "posts/assets/images" });
