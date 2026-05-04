@@ -1,0 +1,20 @@
+{
+  "name": "ishandotsh",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal blog and experiments site for ishan.sh built with Eleventy.",
+  "scripts": {
+    "start": "eleventy --serve",
+    "dev": "eleventy --serve",
+    "build": "rm -rf _site && NODE_ENV=production eleventy",
+    "clean": "rm -rf _site"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-rss": "^2.0.3",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0"
+  },
+  "dependencies": {
+    "fuse.js": "^7.0.0"
+  }
+}

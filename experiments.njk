@@ -1,0 +1,15 @@
+---
+layout: base.njk
+title: Experiments
+permalink: /experiments/
+---
+<header class="page-header">
+  <h1>Experiments</h1>
+</header>
+<div class="dense-index">
+  {% for item in collections.experiments %}
+    {% include "dense-index-item.njk" %}
+  {% else %}
+    <p>No experiments yet.</p>
+  {% endfor %}
+</div>

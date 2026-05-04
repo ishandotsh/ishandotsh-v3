@@ -1,0 +1,21 @@
+---
+layout: base.njk
+pagination:
+  data: collections.allTags
+  size: 1
+  alias: tag
+permalink: /tags/{{ tag | slug }}/
+eleventyComputed:
+  title: "Tagged {{ tag }}"
+---
+{% set taggedItems = collections.allContent | filterByTag(tag) %}
+<header class="page-header">
+  <p class="eyebrow">{{ taggedItems.length }} item{% if taggedItems.length != 1 %}s{% endif %}</p>
+  <h1>Tagged “{{ tag }}”</h1>
+  <p><a href="/tags/">← All tags</a></p>
+</header>
+<div class="card-grid">
+  {% for item in taggedItems %}
+    {% include "card.njk" %}
+  {% endfor %}
+</div>

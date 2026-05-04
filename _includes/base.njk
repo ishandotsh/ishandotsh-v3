@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="{{ site.language }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if title %}{{ title }} · {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ excerpt or description or site.description }}">
+    <meta name="theme-color" content="#141414">
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS" href="{{ site.url }}/feed.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    {% if site.analytics.googleMeasurementId and site.analytics.googleMeasurementId != "G-XXXXXXXXXX" %}
+      <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics.googleMeasurementId }}"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ site.analytics.googleMeasurementId }}');
+      </script>
+    {% endif %}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="/">{{ site.name }}</a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/posts/">Posts</a>
+          <a href="/experiments/">Experiments</a>
+          <a href="/about/">About</a>
+          <a href="/search/">Search</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main" class="site-main">
+      {{ content | safe }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>© {{ site.author.name }} · Built with Eleventy</p>
+        <div class="social-links">
+          {% for link in social %}
+            <a href="{{ link.url }}">{{ link.label }}</a>
+          {% endfor %}
+          <a href="/feed.xml">RSS</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

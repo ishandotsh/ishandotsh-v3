@@ -1,0 +1,17 @@
+<article class="content-card {% if item.data.contentType == 'experiment' %}experiment-card{% endif %}">
+  <div class="card-meta">
+    {% if item.data.contentType == "experiment" %}<span class="type-badge">⚡ Experiment</span>{% else %}<span>Post</span>{% endif %}
+    <time datetime="{{ item.data.date | dateIso }}">{{ item.data.date | dateDisplay }}</time>
+    {% if item.data.draft %}<span class="draft-badge">Draft</span>{% endif %}
+  </div>
+  <h2><a href="{{ item.url }}">{{ item.data.title }}</a></h2>
+  {% if item.data.excerpt %}<p>{{ item.data.excerpt }}</p>{% endif %}
+  {% if item.data.series %}<a class="series-chip" href="{{ item.url }}">{{ item.data.series }}</a>{% endif %}
+  {% if item.data.tags %}
+    <div class="tag-list" aria-label="Tags">
+      {% for tag in item.data.tags %}
+        <a class="tag" href="/tags/{{ tag | slug }}/">{{ tag }}</a>
+      {% endfor %}
+    </div>
+  {% endif %}
+</article>

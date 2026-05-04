@@ -1,0 +1,17 @@
+---
+permalink: /search-index.json
+eleventyExcludeFromCollections: true
+---
+[
+{%- for item in collections.allContent %}
+  {
+    "title": {{ item.data.title | jsonify | safe }},
+    "url": {{ item.url | jsonify | safe }},
+    "type": {{ item.data.contentType | jsonify | safe }},
+    "date": {{ (item.data.date | dateIso) | jsonify | safe }},
+    "excerpt": {{ (item.data.excerpt or "") | jsonify | safe }},
+    "tags": {{ (item.data.tags or []) | jsonify | safe }},
+    "body": {{ (item.templateContent | stripHtml) | jsonify | safe }}
+  }{% if not loop.last %},{% endif %}
+{%- endfor %}
+]

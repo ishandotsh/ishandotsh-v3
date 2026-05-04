@@ -1,0 +1,20 @@
+---
+layout: base.njk
+title: Tags
+permalink: /tags/
+---
+<header class="page-header">
+  <h1>Tags</h1>
+  <p>Browse posts and experiments by topic.</p>
+</header>
+<div class="tag-cloud">
+  {% for tag in collections.allTags %}
+    {% set items = collections.allContent | filterByTag(tag) %}
+    <a class="tag-cloud-item" href="/tags/{{ tag | slug }}/">
+      <span>{{ tag }}</span>
+      <em>{{ items.length }}</em>
+    </a>
+  {% else %}
+    <p>No tags yet.</p>
+  {% endfor %}
+</div>

@@ -1,0 +1,15 @@
+---
+layout: base.njk
+title: Posts
+permalink: /posts/
+---
+<header class="page-header">
+  <h1>Posts</h1>
+</header>
+<div class="dense-index">
+  {% for item in collections.posts %}
+    {% include "dense-index-item.njk" %}
+  {% else %}
+    <p>No posts yet.</p>
+  {% endfor %}
+</div>
