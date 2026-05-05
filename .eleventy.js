@@ -106,6 +106,13 @@ function isExternalUrl(href = "", siteUrl = "") {
   }
 }
 
+function rssSafeContent(value = "") {
+  return String(value).replace(
+    /<div class="tweet-embed">\s*<blockquote class="twitter-tweet"[\s\S]*?<a href="([^"]+)"[^>]*><\/a>\s*<\/blockquote>\s*<\/div>/gi,
+    (_match, url) => `<p>Tweet: <a href="${escapeAttribute(url)}">${escapeHtml(url)}</a></p>`
+  );
+}
+
 function externalLinks(value = "", siteUrl = "") {
   return String(value).replace(/<a\b([^>]*)>/gi, (tag, attrs) => {
     const hrefMatch = attrs.match(/\shref\s*=\s*(["'])(.*?)\1/i) || attrs.match(/\shref\s*=\s*([^\s>]+)/i);
@@ -176,6 +183,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("dateIso", (value) => value ? new Date(value).toISOString() : "");
   eleventyConfig.addFilter("dateYmd", (value) => value ? new Date(value).toISOString().slice(0, 10) : "");
   eleventyConfig.addFilter("externalLinks", externalLinks);
+  eleventyConfig.addFilter("rssSafeContent", rssSafeContent);
   eleventyConfig.addShortcode("tweet", (url) => {
     const tweetUrl = escapeAttribute(normalizeTweetUrl(url));
     return `<div class="tweet-embed"><blockquote class="twitter-tweet" data-theme="dark" data-dnt="true"><a href="${tweetUrl}"></a></blockquote></div>`;
