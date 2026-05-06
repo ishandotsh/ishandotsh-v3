@@ -6,6 +6,17 @@
     <title>{% if title %}{{ title }} · {% endif %}{{ site.title }}</title>
     <meta name="description" content="{{ excerpt or description or site.description }}">
     <meta name="theme-color" content="#141414">
+    <script>
+      (function () {
+        try {
+          var storedTheme = localStorage.getItem("theme");
+          var systemTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+          document.documentElement.dataset.theme = storedTheme || systemTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
+    </script>
     <link rel="canonical" href="{{ site.url }}{{ page.url }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS" href="{{ site.url }}/feed.xml">
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -35,6 +46,10 @@
           <a href="/experiments/">Experiments</a>
           <a href="/about/">About</a>
           <a href="/search/">Search</a>
+          <button class="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false" data-theme-toggle>
+            <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+            <span data-theme-toggle-label>Dark</span>
+          </button>
         </div>
       </nav>
     </header>
@@ -54,5 +69,6 @@
         </div>
       </div>
     </footer>
+    <script src="/js/theme.js" defer></script>
   </body>
 </html>
